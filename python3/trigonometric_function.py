@@ -3,6 +3,7 @@
 
 from benchmarker import Benchmarker
 import numpy as np
+import random
 import math
 
 '''
@@ -49,7 +50,7 @@ def f(x):
     t2 = 0.0
     p1 = [-1.0, 0.0]
     p2 = [1.0, 0.0]
-    while t1 - t2 > 0.0000000000000001:
+    while t1 - t2 > 0.000000000000001:
         m = (t1 + t2) / 2
         if m > x:
             t1 = m
@@ -74,13 +75,15 @@ def tan(x):
 
 
 if __name__ == '__main__':
-    with Benchmarker(10 * 1000, width=20) as bench:
+    random.seed(0)
+    loop = [random.uniform(0, pi) for _ in range(10 * 1000)]
+    with Benchmarker(width=20) as bench:
         @bench('hoge')
         def _(bm):
-            for _ in bm:
-                sin(0.33)
+            for r in loop:
+                sin(r)
 
         @bench('piyo')
         def _(bm):
-            for _ in bm:
-                np.sin(0.33)
+            for r in loop:
+                np.sin(r)
