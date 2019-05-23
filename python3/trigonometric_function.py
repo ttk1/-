@@ -1,6 +1,7 @@
 #!/bin/python3
 # coding:utf-8
 
+from benchmarker import Benchmarker
 import numpy as np
 
 
@@ -43,14 +44,13 @@ def tan(x):
 
 
 if __name__ == '__main__':
-    # sin
-    print(sin(1))
-    print(np.sin(1))
+    with Benchmarker(1000, width=20) as bench:
+        @bench('hoge')
+        def _(bm):
+            for _ in bm:
+                sin(0.33)
 
-    # cos
-    print(cos(1))
-    print(np.cos(1))
-
-    # tan
-    print(tan(1))
-    print(np.tan(1))
+        @bench('piyo')
+        def _(bm):
+            for _ in bm:
+                np.sin(0.33)
