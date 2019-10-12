@@ -26,7 +26,6 @@ def sort(a):
           i += 1
 
   b = list(a)
-  from math import log2
   f(b, a, 0, len(a))
 
 a = [5, 1, 2, 7, 4, 3, 6]
