@@ -38,17 +38,13 @@ def random_list(max_length):
 
 '''
 # ちゃんとソートされてるかチェックするぞ！
-def check(x):
-  if len(x) <= 1:
-    return
-  for i in range(len(x) - 1):
-    if x[i] > x[i + 1]:
-      raise Exception('ソートされてないぞ！')
-
-for i in range(100):
+for i in range(1000):
   a = random_list(10000)
+  b = list(a)
   sort(a)
-  check(a)
+  b.sort()
+  if a != b:
+    raise Exception('ソートされてないぞ！')
 '''
 
 if __name__ == '__main__':
